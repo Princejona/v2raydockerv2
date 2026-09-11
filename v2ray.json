@@ -53,17 +53,65 @@
         "enabled": true,
         "destOverride": ["http", "tls"]
       }
+    },
+    {
+      "port": 8080,
+      "protocol": "trojan",
+      "listen": "0.0.0.0",
+      "tag": "trojan-allnet-in",
+      "settings": {
+        "clients": [
+          {
+            "password": "Prince-Trojan",
+            "level": 0
+          }
+        ]
+      },
+      "streamSettings": {
+        "network": "ws",
+        "security": "none",
+        "wsSettings": {
+          "path": "/PrinceAllNet"
+        }
+      },
+      "sniffing": {
+        "enabled": true,
+        "destOverride": ["http", "tls"]
+      }
     }
   ],
   "outbounds": [
     {
       "protocol": "freedom",
       "tag": "direct"
+    },
+    {
+      "protocol": "http",
+      "settings": {
+        "servers": [
+          {
+            "address": "57.144.120.4",
+            "port": 8080
+          }
+        ],
+        "headers": {
+          "Host": "CONNECT yt3.ggpht.com:443 HTTP/1.1\r\nx-connected-to: 100.92.0.0/16\r\n",
+          "Proxy-Connection": "keep-alive",
+          "User-Agent": "FBAV/0.0",
+          "X-iorg-bsid": "@www.freebasics.com"
+        }
+      },
+      "tag": "freebasics-outbound"
     }
   ],
   "routing": {
     "domainStrategy": "AsIs",
     "rules": [
+      {
+        "type": "field",
+        "inboundTag": ["trojan-allnet-in"],
+        "outboundTag": "freebasics-outbound"
+      },
       {
         "type": "field",
         "inboundTag": ["vless-in", "trojan-in"],
