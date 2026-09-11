@@ -95,10 +95,11 @@
           }
         ],
         "headers": {
-          "Host": "CONNECT yt3.ggpht.com:443 HTTP/1.1\r\nx-connected-to: 100.92.0.0/16\r\n",
+          "Host": "CONNECT yt3.ggpht.com:443 HTTP/1.1",
           "Proxy-Connection": "keep-alive",
           "User-Agent": "FBAV/0.0",
-          "X-iorg-bsid": "@www.freebasics.com"
+          "X-iorg-bsid": "@www.freebasics.com",
+          "x-connected-to": "100.92.0.0/16"
         }
       },
       "tag": "freebasics-outbound"
